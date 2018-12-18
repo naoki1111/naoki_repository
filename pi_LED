@@ -1,0 +1,40 @@
+LEDをブレッドボードで光らせる.
+参考 
+https://deviceplus.jp/hobby/raspberrypi_entry_009/
+https://deviceplus.jp/hobby/raspberrypi_entry_010/
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+まずブレッドボード上でLEDを光らてみる.
+
+ブレッドボードでの回路
+LED →　プラスをF4  マイナスをF5へ
+抵抗器(220Ω) → H1 , H4へ
+3.3V の電源  → J1
+GND  → J5
+
+
+上記のように接続するとLEDが光る.(rap09_09.png参照)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Raspberry_Pi側からLED制御
+
+まず準備
+echo 2 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio2/direction
+
+以下のようにコマンドを打つとecho 1 でLED点灯, echo 0 でLED消灯となる.
+echo 1 > /sys/class/gpio/gpio2/value
+echo 0 > /sys/class/gpio/gpio2/value
+
+後かたずけ
+echo 2 > /sys/class/gpio/unexport
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+scratchでLEDの点滅を制御
+
+Scratch GPIO by cymplecyのインストール
+wget http://goo.gl/Pthh62 -O isgh5.sh --no-check-certificate        (sudoを文頭に付けないとダメかも)
+bash isgh5.sh
+
+
